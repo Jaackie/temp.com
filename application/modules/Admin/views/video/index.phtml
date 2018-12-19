@@ -1,0 +1,54 @@
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th class="col-md-1">视频</th>
+        <th class="col-md-1">封面</th>
+        <th>简介</th>
+        <th>时长</th>
+        <th>浏览量</th>
+        <th>分类标签</th>
+        <th>时间</th>
+        <th>操作</th>
+    </tr>
+    <?php if ($data): ?>
+        <?php foreach ($data as $row): ?>
+            <tr data-id="<?= $row['video_id']; ?>">
+                <td><?= $row['video_id']; ?></td>
+                <td>
+                    <video src="<?= r() . $row['url']; ?>" <?= $row['cover'] ? 'poster="' . r() . $row['cover'] . '"' : ''; ?>
+                           controls="controls"></video>
+                </td>
+                <td>
+                    <img src="<?= $row['cover'] ? r() . $row['cover'] : ''; ?>"/>
+                </td>
+                <td><?= $row['intro']; ?></td>
+                <td><?= $row['time_length']; ?></td>
+                <td><?= $row['view_num']; ?></td>
+                <td>
+                    <?php foreach ($row['tags'] as $tag): ?>
+                        #<?= $tag['tag_name']; ?>#<br/>
+                    <?php endforeach; ?>
+                </td>
+                <td>
+                    创建：<?= date('Y-m-d H:i:s', $row['create_time']); ?><br/>
+                    修改：<?= date('Y-m-d H:i:s', $row['update_time']); ?><br/>
+                </td>
+                <td>
+                    <a href="/admin/video/upload?video_id=<?= $row['video_id']; ?>">编辑</a>
+                    <a href="#" class="js-del">删除</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</table>
+<script>
+    $(function () {
+        $('.js-del').click(function () {
+            if (!confirm('确定删除?')) {
+                return false;
+            }
+            var id = $(this).parents('tr').data('id');
+            $.myAjaxPost('/admin/video/del', {video_id: id});
+        })
+    });
+</script>

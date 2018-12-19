@@ -1,0 +1,42 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-success" data-remote="/admin/config/add?is_ajax=0" data-toggle="modal">新建
+    </button>
+</div>
+<p></p>
+<table class="table table-bordered col-lg-12">
+    <tr>
+        <th>ID</th>
+        <th>KEY</th>
+        <th>备注</th>
+        <th class="col-lg-5">值</th>
+        <th>操作</th>
+    </tr>
+    <?php if ($data): ?>
+        <?php foreach ($data as $row): ?>
+            <tr data-id="<?= $row['id']; ?>">
+                <td><?= $row['id']; ?></td>
+                <td><?= $row['key']; ?></td>
+                <td><?= $row['intro']; ?></td>
+                <td>
+                    <?= tool_str::utf8_substr($row['value'], 200); ?>
+                </td>
+                <td>
+                    <a data-remote="/admin/config/edit?is_ajax=0&id=<?= $row['id']; ?>" data-toggle="modal">编辑</a>
+                    <a data-remote="/admin/config/edit?is_ajax=0&id=<?= $row['id']; ?>&row=1"
+                       data-toggle="modal">编辑源</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</table>
+<script>
+    $(function () {
+        $('.js-del').click(function () {
+            if (!confirm('确定删除?')) {
+                return false;
+            }
+            var id = $(this).parents('tr').data('id');
+            $.myAjaxPost('/admin/video/del', {video_id: id});
+        })
+    });
+</script>
