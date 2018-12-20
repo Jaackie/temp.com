@@ -8,6 +8,8 @@
  */
 class tool_time
 {
+    use Instance;
+
     public $time;           //当前时间戳
     public $days_in_month;  //每月天数
     public $weeks_in_month; //每月周数
@@ -19,11 +21,6 @@ class tool_time
         $this->time = $time === null ? time() : intval($time);
         $this->days_in_month = cal_days_in_month(CAL_GREGORIAN, date('n', $this->time), date('Y', $this->time));
         $this->weeks_in_month = round(($this->days_in_month / 7), 5);
-    }
-
-    public static function instance($time = null)
-    {
-        return new self($time);
     }
 
     /**

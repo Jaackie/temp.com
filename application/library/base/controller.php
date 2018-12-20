@@ -46,6 +46,7 @@ class base_controller extends Yaf_Controller_Abstract
      * 获取一个必须的参数
      * @param $keyName
      * @return string $token
+     * @throws
      */
     public function requirePost($keyName)
     {

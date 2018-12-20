@@ -17,10 +17,7 @@ class Curl
     private $_debug = false;
     private $_clear = false;
 
-    public static function getInstance()
-    {
-        return new self;
-    }
+    use Instance;
 
     /**
      * 设置url

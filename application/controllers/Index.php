@@ -10,7 +10,7 @@ class IndexController extends base_controller
 {
     public function indexAction()
     {
-        echo "Hello! Welcome to Qiuhungo!";
+        echo "Hello! Jaackie!";
     }
 
 }

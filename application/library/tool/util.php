@@ -28,7 +28,6 @@ class tool_util
      * 上个方法的升级版，将原数组基础上再加一维数组，并且包含more的信息
      * @param array $arr
      * @param int $count
-     * @return array
      */
     public static function isMoreRes(array &$arr, $count = 10)
     {
