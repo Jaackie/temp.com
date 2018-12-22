@@ -21,7 +21,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract
 
     public function _initImport()
     {
-        Yaf_Loader::import(APPLICATION_PATH . '/application/functions/app.php');
+//        Yaf_Loader::import(APPLICATION_PATH . '/application/functions/app.php');
     }
 
     public function _initView(Yaf_Dispatcher $dispatcher)

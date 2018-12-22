@@ -25,6 +25,15 @@ class base_controller extends Yaf_Controller_Abstract
 
     public function init()
     {
+//        $this->_jsonCallback();
+
+    }
+
+    /**
+     * 前端js的回调
+     */
+    private function _jsonCallback()
+    {
         if (!empty($_REQUEST['callback']) && preg_match('/^[.\w$]+$/i', $_REQUEST['callback'])) {
             $this->_callback = $_REQUEST['callback'];
         }
@@ -158,11 +167,11 @@ class base_controller extends Yaf_Controller_Abstract
         /**
          * Write log
          */
-        $timer = microtime(1) - $this->_timer_start;
+        /*$timer = microtime(1) - $this->_timer_start;
         $file = '/tmp/api.' . date('Ymd') . '.log';
         $writePost = self::_writePost($this->_write_post);
         $logData = sprintf("[%s]\t%03d\t%10.2f\t%s\n", date('m-d H:i:s'), $code, $timer * 1000, $_SERVER['REQUEST_URI'] . $writePost);
-        file_put_contents($file, $logData, FILE_APPEND);
+        file_put_contents($file, $logData, FILE_APPEND);*/
 
         return false || exit;
     }
